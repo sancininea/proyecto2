@@ -45,5 +45,5 @@ function insertBubble(posicion) {
         .text(d => d);
 
     leaf.append("title")
-        .text(d => `${d.b_data}\n${format(d.coefficient)}`);
+        .text(d => `${d.data.name}\n${d.data.coefficient}`);
 }

@@ -20,6 +20,12 @@ app=Flask(__name__)
 #
 # Página principal Index.html
 #
+# Esta es la ruta principal del dashboard, extrae datos de la base
+# usando la función fetch_data() de p_tool.py
+#
+# Con los datos extraídos arma 2 objetos JS que poblarán el mapa
+# y la gráfica de burbujas.
+#
 #################################################################
 @app.route("/")
 def index():
@@ -29,6 +35,8 @@ def index():
     contador = 0
 
     for d in graph_data.values.tolist():
+
+        # Crea el objeto JS para poblar los datos del mapa
         texto = texto + '{ name: "' + d[1] + '",'
         texto = texto + ' water: ' + str(d[2]) + ','
         texto = texto + ' alcohol: ' + str(d[3]) + ','
@@ -46,6 +54,8 @@ def index():
         texto = texto + '},'
 
         contador +=1
+
+        # Crea una lista de objetos JS para poblar los datos de la gráfica de burbujas
         bubbles = bubbles + '['
 
         if d[2] > 0:
@@ -113,6 +123,8 @@ def index():
 
     texto = texto + ']'
     bubbles = bubbles + ']'
+    
+    # Da formato a los objetos para que se envíen como html en el render
     texto = Markup(texto)
     bubbles = Markup(bubbles)
 
@@ -120,7 +132,9 @@ def index():
 
 #################################################################
 #
-# Página secundaria
+# Página secundaria - Tabla de datos
+#
+# Esta es la función para hacer el render de la página tabla.html
 #
 #################################################################
 @app.route("/rdata")
@@ -130,6 +144,15 @@ def rdata():
 #################################################################
 #
 # Carga de archivos a base de datos
+#
+# Este código permite hacer la carga de los archivos de datos a la
+# base de PostgreSQL.
+#
+# Utiliza la función analysis_func() del paquete p_tools.py, esta
+# realiza una regresión lineal sobre los datos de un archivo frente
+# a los datos de un conjunto de archivos similares, arma un dataframe
+# con los coeficientes de correlación y los junta en una sola tabla
+# al final guarda el dataframe en la base de datos.
 #
 #################################################################
 @app.route("/load")
@@ -155,6 +178,8 @@ def get_data():
 #################################################################
 #
 # Manejador de error 404
+#
+# Manejador de errores para acceso a páginas no existentes
 #
 #################################################################
 @app.errorhandler(404)

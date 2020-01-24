@@ -1,3 +1,8 @@
+/// Función para manejar la tabla de búsqueda dinamica
+/// Lee los datos de un Json y los añade dinámicamente a la tabla del html
+/// La función searchCountry "esconde" los renglones que no cumplen con el texto buscado
+/// y deja visibles los que si coinciden.
+
 function productsAdd() {
 
     d3.json("/static/js/csvjson.json", (err, tableData) => {

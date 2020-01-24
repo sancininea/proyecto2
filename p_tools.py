@@ -11,15 +11,13 @@ from scipy.stats import pearsonr
 
 #####################################################################################
 #                                                                                   #
-# Function XXXXXXX                                                                  #
-# This function xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.             #
+# Function fetch_data()                                                             #
+# This function extracts the correlation coefficients saved in the data base.       #
 #                                                                                   #
 # Parameters:                                                                       #
-# filesList - An array of strings that contains the names of the files              #
-# retrieve. Use filesList = glob.glob(".\<folder name>\*.xml") to set this list.    #
+#            None.                                                                  #
 #                                                                                   #
-# Returns: xmls - List of dictionaries with the data to store. The lenght varies,   #
-# the files can have different data.                                                #
+# Returns: result_query - A dataframe with the result of the query.                 #
 #                                                                                   #
 #####################################################################################
 def fetch_data():
@@ -38,7 +36,7 @@ def fetch_data():
 
 #####################################################################################
 #                                                                                   #
-# Function Alan                                                                     #
+# Function analysis_func()                                                          #
 # Esta función recibe un archivo base y un folder de archivos a utilizar para       #
 # determinar si están correlacionados y obtener su coeficiente de correlación       #
 #                                                                                   #
